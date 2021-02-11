@@ -6,7 +6,8 @@ const webpackHotMiddleware = require("webpack-hot-middleware");
 const config = require(path.join(__dirname, "../webpack.config.js"));
 const compiler = webpack(config);
 const app = express();
-
+const cors = require("cors");
+app.use(cors());
 app.use(webpackDevMiddleware(compiler, config.devServer));
 app.use(webpackHotMiddleware(compiler));
 app.use(express.static(path.join(__dirname, '../build')));
